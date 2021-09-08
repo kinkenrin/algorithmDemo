@@ -1,19 +1,17 @@
-package com.julive.textdemo;
+package com.julive.textdemo.sort;
+
+import com.julive.textdemo.SortUtil;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
+public class SortUnitTest {
 
     @Test
     public void testSorted() {

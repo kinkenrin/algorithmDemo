@@ -4,7 +4,7 @@ package com.julive.textdemo;
  * Created by jinxianlun
  * on 6/23/21
  */
-class SortUtil {
+public class SortUtil {
 
     public static void selectionSoft(int[] arr) {
         if (arr == null || arr.length < 2) {
