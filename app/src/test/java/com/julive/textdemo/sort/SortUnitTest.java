@@ -33,11 +33,6 @@ public class SortUnitTest {
         assertTrue(isSorted);
     }
 
-    @Test
-    public void sss() {
-
-    }
-
     private void printNum(int num) {
         for (int i = 31; i >= 0; i--) {
             System.out.print((num & (1 << i)) == 0 ? "0" : "1");
