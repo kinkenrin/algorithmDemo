@@ -22,6 +22,7 @@ public class SortUnitTest {
         for (int i = 0; i < times; i++) {
             int[] ints = randomArr(maxLength, maxValue);
 
+            SortUtil.mergeSort2(ints);
             SortUtil.mergeSort(ints);
 
             if (!isSorted(ints)) {

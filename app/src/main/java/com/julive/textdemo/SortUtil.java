@@ -111,4 +111,30 @@ public class SortUtil {
             arr[l + j] = help[j];
         }
     }
+
+    public static void mergeSort2(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        int mergeSize = 1;
+        int N = arr.length;
+        while (mergeSize < N) {
+            int L = 0;
+            while (L < N) {
+                int M = L + mergeSize - 1;
+                if (M >= N) {
+                    break;
+                }
+                int R = Math.min(M + mergeSize, N - 1);
+                merge(arr, L, M, R);
+                L = R + 1;
+            }
+
+            if (mergeSize > (N >> 1)) {
+                break;
+            }
+            mergeSize <<= 1;
+        }
+
+    }
 }
