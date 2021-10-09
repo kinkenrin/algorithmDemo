@@ -137,4 +137,50 @@ public class SortUtil {
         }
 
     }
+
+    public static void quickSoft(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+
+        quickProcess(arr, 0, arr.length - 1);
+    }
+
+    private static void quickProcess(int[] arr, int l, int r) {
+        if (l >= r) {
+            return;
+        }
+
+        swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+        int[] equalsArea = netherLandsFlag(arr, l, r);
+        quickProcess(arr, l, equalsArea[0] - 1);
+        quickProcess(arr, equalsArea[1] + 1, r);
+    }
+
+    private static int[] netherLandsFlag(int[] arr, int l, int r) {
+        if (l > r) {
+            return new int[]{-1, -1};
+        }
+
+        if (l == r) {
+            return new int[]{l, r};
+        }
+
+        int less = l - 1;
+        int more = r;
+        int index = l;
+
+        while (index < more) {
+            if (arr[index] == arr[r]) {
+                index++;
+            } else if (arr[index] < arr[r]) {
+                swap(arr, index++, ++less);
+            } else {
+                swap(arr, index, --more);
+            }
+        }
+        swap(arr, r, more);
+        return new int[]{less + 1, more};
+    }
+
 }

@@ -15,15 +15,14 @@ public class SortUnitTest {
 
     @Test
     public void testSorted() {
-        int times = 1000;
+        int times = 10000;
         int maxLength = 50;
         int maxValue = 10000;
         boolean isSorted = true;
         for (int i = 0; i < times; i++) {
             int[] ints = randomArr(maxLength, maxValue);
 
-            SortUtil.mergeSort2(ints);
-            SortUtil.mergeSort(ints);
+            SortUtil.quickSoft(ints);
 
             if (!isSorted(ints)) {
                 System.out.println("排序错误");
