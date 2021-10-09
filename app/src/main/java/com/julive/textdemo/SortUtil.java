@@ -152,12 +152,12 @@ public class SortUtil {
         }
 
         swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
-        int[] equalsArea = netherLandsFlag(arr, l, r);
+        int[] equalsArea = netherlandsFlag(arr, l, r);
         quickProcess(arr, l, equalsArea[0] - 1);
         quickProcess(arr, equalsArea[1] + 1, r);
     }
 
-    private static int[] netherLandsFlag(int[] arr, int l, int r) {
+    private static int[] netherlandsFlag(int[] arr, int l, int r) {
         if (l > r) {
             return new int[]{-1, -1};
         }
