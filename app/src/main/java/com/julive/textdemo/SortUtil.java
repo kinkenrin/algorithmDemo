@@ -155,6 +155,30 @@ public class SortUtil {
         int[] equalsArea = netherlandsFlag(arr, l, r);
         quickProcess(arr, l, equalsArea[0] - 1);
         quickProcess(arr, equalsArea[1] + 1, r);
+
+//        int partition = partition(arr, l, r);
+//        quickProcess(arr, l, partition - 1);
+//        quickProcess(arr, partition + 1, r);
+    }
+
+    private static int partition(int[] arr, int l, int r) {
+        if (l > r) {
+            return -1;
+        }
+
+        if (l == r) {
+            return l;
+        }
+        int less = l - 1;
+        int index = l;
+        while (index < r) {
+            if (arr[index] < arr[r]) {
+                swap(arr, index, ++less);
+            }
+            index++;
+        }
+        swap(arr, r, ++less);
+        return less;
     }
 
     private static int[] netherlandsFlag(int[] arr, int l, int r) {
