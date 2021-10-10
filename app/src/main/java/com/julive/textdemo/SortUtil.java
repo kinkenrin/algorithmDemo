@@ -188,8 +188,14 @@ public class SortUtil {
             return;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            heapInsert(arr, i);
+        //O(N*logN)
+//        for (int i = 0; i < arr.length; i++) {
+//            heapInsert(arr, i);
+//        }
+
+        //O(N)
+        for (int i = arr.length - 1; i >= 0; i--) {
+            heapify(arr, i, arr.length);
         }
 
         int heapSize = arr.length;
