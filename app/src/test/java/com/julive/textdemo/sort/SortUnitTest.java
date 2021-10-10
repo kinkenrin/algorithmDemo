@@ -22,7 +22,7 @@ public class SortUnitTest {
         for (int i = 0; i < times; i++) {
             int[] ints = randomArr(maxLength, maxValue);
 
-            SortUtil.quickSoft(ints);
+            SortUtil.heapSoft(ints);
 
             if (!isSorted(ints)) {
                 System.out.println("排序错误");
