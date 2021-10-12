@@ -1,5 +1,7 @@
 package com.julive.textdemo.trietree;
 
+import androidx.annotation.NonNull;
+
 import java.util.HashMap;
 
 /**
@@ -21,6 +23,7 @@ public class TrieTree {
     }
 
     public static class Trie {
+        @NonNull
         private Node root;
 
         public Trie() {
@@ -31,12 +34,12 @@ public class TrieTree {
             if (word == null) {
                 return;
             }
-            char[] chars = word.toCharArray();
+            char[] chs = word.toCharArray();
             Node node = root;
             node.pass++;
             int index = 0;
-            for (int i = 0; i < chars.length; i++) {
-                index = chars[i];
+            for (int i = 0; i < chs.length; i++) {
+                index = chs[i];
                 if (!node.next.containsKey(index)) {
                     node.next.put(index, new Node());
                 }
@@ -50,9 +53,10 @@ public class TrieTree {
             if (word == null) {
                 return 0;
             }
+
+            char[] chs = word.toCharArray();
             Node node = root;
             int index = 0;
-            char[] chs = word.toCharArray();
             for (int i = 0; i < chs.length; i++) {
                 index = chs[i];
                 if (!node.next.containsKey(index)) {
@@ -85,6 +89,7 @@ public class TrieTree {
             if (pre == null) {
                 return 0;
             }
+
             char[] chs = pre.toCharArray();
             Node node = root;
             int index = 0;
@@ -97,5 +102,7 @@ public class TrieTree {
             }
             return node.pass;
         }
+
+
     }
 }
