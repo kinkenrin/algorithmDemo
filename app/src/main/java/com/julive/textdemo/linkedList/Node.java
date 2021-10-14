@@ -10,7 +10,7 @@ public class Node {
         this.value = val;
     }
 
-    private int value = 0;
+    public int value = 0;
 
     public int getValue() {
         return value;
