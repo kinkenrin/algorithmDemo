@@ -13,12 +13,18 @@ public class LinkedListTest {
         Node node1 = new Node(1);
         node1.next = new Node(2);
         node1.next.next = new Node(3);
-
+        node1.next.next.next = new Node(4);
+        node1.next.next.next.next = new Node(5);
+        node1.next.next.next.next.next = new Node(6);
+//        node1.next.next.next.next.next.next = new Node(7);
+//        node1.next.next.next.next.next.next.next = new Node(8);
+        Node midNode = ListNodeTest.findMidNode4(node1);
+        System.out.println("sss:" + midNode.getValue());
 //        printLinkedList(node1);
 
-        node1 = reverseLinkedList(node1);
+//        node1 = reverseLinkedList(node1);
 
-        printLinkedList(node1);
+//        printLinkedList(node1);
     }
 
     public Node reverseLinkedList(Node head) {
