@@ -42,7 +42,7 @@ public class Bsf_DsfCode {
         }
         Stack<Node> stack = new Stack<>();
         HashSet<Node> set = new HashSet<>();
-        stack.add(start);
+        stack.push(start);
         set.add(start);
         System.out.println(start.value + "");
         while (!stack.isEmpty()) {
