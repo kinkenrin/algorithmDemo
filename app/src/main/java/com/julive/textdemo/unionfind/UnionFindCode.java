@@ -1,4 +1,4 @@
-package com.julive.textdemo.linkedList;
+package com.julive.textdemo.unionfind;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +67,51 @@ public class UnionFindCode {
 
         public int sets() {
             return sizeMap.size();
+        }
+    }
+
+    public static class UnionFind1 {
+        int[] parent;
+        int[] size;
+        int[] help;
+        int sets;
+
+        public UnionFind1(int N) {
+            parent = new int[N];
+            size = new int[N];
+            help = new int[N];
+            sets = N;
+            for (int i = 0; i < N; i++) {
+                parent[i] = i;
+                size[i] = 1;
+            }
+        }
+
+        public int find(int index) {
+            int hi = 0;
+            while (index != parent[index]) {
+                help[hi++] = parent[index];
+                index = parent[index];
+            }
+            for (hi--; hi >= 0; hi--) {
+                parent[help[hi]] = index;
+            }
+            return index;
+        }
+
+        public void union(int a, int b) {
+            int f1 = find(a);
+            int f2 = find(b);
+            if (f1 != f2) {
+                if (size[f1] >= size[f2]) {
+                    size[f1] += size[f2];
+                    parent[f2] = f1;
+                } else {
+                    size[f2] += size[f1];
+                    parent[f1] = f2;
+                }
+                sets--;
+            }
         }
     }
 }
