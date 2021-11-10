@@ -10,30 +10,29 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class BlockingQueue {
     Object[] data;
+    int takeIndex;
     int putIndex;
-    int getIndex;
     int size;
     int limit;
-    ReentrantLock reentrantLock = new ReentrantLock();
+    ReentrantLock lock = new ReentrantLock();
     Condition write;
     Condition read;
 
     public BlockingQueue(int capacity) {
         this.limit = capacity;
-        data = new Object[capacity];
-        putIndex = 0;
-        getIndex = 0;
-        size = 0;
-        write = reentrantLock.newCondition();
-        read = reentrantLock.newCondition();
+        data = new Object[limit];
+        write = lock.newCondition();
+        read = lock.newCondition();
     }
 
     public boolean put(Object obj) {
+        if (obj == null) {
+            throw new NullPointerException();
+        }
         try {
-            reentrantLock.lock();
+            lock.lock();
             while (size == limit) {
                 //队列满了
-                System.out.println("队列满了");
                 write.await();
             }
             data[putIndex++] = obj;
@@ -46,22 +45,21 @@ public class BlockingQueue {
         } catch (Exception e) {
             read.signal();
         } finally {
-            reentrantLock.unlock();
+            lock.unlock();
         }
         return false;
     }
 
     public Object take() {
         try {
-            reentrantLock.lock();
+            lock.lock();
             while (size == 0) {
                 //没数据了
-                System.out.println("没数据了");
                 read.await();
             }
-            Object res = data[getIndex++];
-            if (getIndex == limit) {
-                getIndex = 0;
+            Object res = data[takeIndex++];
+            if (takeIndex == limit) {
+                takeIndex = 0;
             }
             size--;
             write.signal();
@@ -69,7 +67,7 @@ public class BlockingQueue {
         } catch (Exception e) {
             write.signal();
         } finally {
-            reentrantLock.unlock();
+            lock.unlock();
         }
         return null;
     }
